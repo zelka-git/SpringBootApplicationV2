@@ -1,2 +1,20 @@
 server:
   port: 8085
+
+spring:
+  application:
+    name: demo
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+
+  datasource:
+#    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://localhost:5434/testDb
+    username: test
+    password: test
+    hikari:
+      poolName: Hikari
+      auto-commit: false
