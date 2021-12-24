@@ -3,6 +3,7 @@ package com.example.demo.model;
 import java.util.Objects;
 import java.util.UUID;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Getter;
@@ -14,6 +15,7 @@ import lombok.Setter;
 @Table(name = "items")
 public class Item {
     @Id
+    @GeneratedValue
     private UUID id;
 
     private String name;

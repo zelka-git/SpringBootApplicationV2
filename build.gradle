@@ -6,11 +6,13 @@ plugins {
     id 'org.springframework.boot'
     id 'io.spring.dependency-management'
     id 'org.liquibase.gradle' version '2.1.0'
+    id "org.springframework.cloud.contract" version "${springCloudContractVersion}"
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 configurations {
     compileOnly {
@@ -20,6 +22,14 @@ configurations {
 
 repositories {
     mavenCentral()
+}
+
+contracts {
+    packageWithBaseClasses = 'com.example.demo.contracts'
+}
+
+contractTest {
+    useJUnitPlatform()
 }
 
 dependencies {
@@ -46,6 +56,8 @@ dependencies {
 
     testImplementation 'org.testcontainers:postgresql:1.16.2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation "org.springframework.cloud:spring-cloud-starter-contract-verifier:${springCloudContractVersion}"
+    testImplementation "org.springframework.cloud:spring-cloud-starter-contract-stub-runner:${springCloudContractVersion}"
 }
 
 test {
@@ -80,8 +92,11 @@ wrapper {
 }
 
 checkstyle {
-    configFile = rootProject.file('tools/checkstyle/checkstyle.xml')
-    maxErrors(0)
+    toolVersion = '8.37'
+    configDirectory = file("${rootDir}/tools/checkstyle")
+    maxWarnings = 0
+    checkstyleContractTest.enabled = false
+    checkstyleTest.enabled = false
 }
 
 liquibase {
