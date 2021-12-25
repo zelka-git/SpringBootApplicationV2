@@ -25,7 +25,7 @@ repositories {
 }
 
 contracts {
-    packageWithBaseClasses = 'com.example.demo.contracts'
+    packageWithBaseClasses = 'com.example.demo'
 }
 
 contractTest {

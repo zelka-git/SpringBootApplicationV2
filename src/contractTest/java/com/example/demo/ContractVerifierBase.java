@@ -1,6 +1,5 @@
-package com.example.demo.contracts;
+package com.example.demo;
 
-import com.example.demo.DemoApplication;
 import com.example.demo.controller.ItemController;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.jupiter.api.BeforeEach;
