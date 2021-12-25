@@ -1,5 +1,9 @@
 # SpringBootApplicationV2
 
 SpringBoot,
+gradle,
 liquibase,
-Testcontainers
+testcontainers,
+contract test
+
+liquibase - hibernate plugin to generate changelog
