@@ -8,6 +8,7 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public record ItemService(ItemRepository itemRepository,
@@ -22,7 +23,8 @@ public record ItemService(ItemRepository itemRepository,
 
     @Override
     public ItemDTO getById(UUID id) {
-        return itemRepository.findById(id).map(itemMapper::toDto)
+        return itemRepository.findById(id)
+            .map(itemMapper::toDto)
             .orElseThrow(() -> new EntityNotFoundException(String.format(ITEM_NOT_FOUND, id)));
     }
 
@@ -32,8 +34,10 @@ public record ItemService(ItemRepository itemRepository,
     }
 
     @Override
+    @Transactional
     public void update(UUID id, ItemDTO item) {
-        itemRepository.findById(id).map(itemEntity -> {
+        itemRepository.findById(id)
+            .map(itemEntity -> {
             itemEntity.setName(item.getName());
             return itemEntity;
         }).orElseThrow(() -> new EntityNotFoundException(String.format(ITEM_NOT_FOUND, id)));
