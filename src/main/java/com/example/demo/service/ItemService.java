@@ -5,16 +5,20 @@ import com.example.demo.mapper.ItemMapper;
 import com.example.demo.repository.ItemRepository;
 import java.util.UUID;
 import javax.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public record ItemService(ItemRepository itemRepository,
-                          ItemMapper itemMapper) implements CommonService<ItemDTO, UUID> {
+@RequiredArgsConstructor
+public class ItemService implements CommonService<ItemDTO, UUID> {
 
     private static final String ITEM_NOT_FOUND = "item with id: %s not found";
+
+    private final ItemRepository itemRepository;
+    private final ItemMapper itemMapper;
 
     @Override
     public Page<ItemDTO> getAll(Pageable pageable) {
@@ -38,9 +42,9 @@ public record ItemService(ItemRepository itemRepository,
     public void update(UUID id, ItemDTO item) {
         itemRepository.findById(id)
             .map(itemEntity -> {
-            itemEntity.setName(item.getName());
-            return itemEntity;
-        }).orElseThrow(() -> new EntityNotFoundException(String.format(ITEM_NOT_FOUND, id)));
+                itemEntity.setName(item.getName());
+                return itemEntity;
+            }).orElseThrow(() -> new EntityNotFoundException(String.format(ITEM_NOT_FOUND, id)));
     }
 
     @Override
