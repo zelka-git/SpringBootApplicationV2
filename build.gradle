@@ -14,6 +14,12 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
+dependencyManagement {
+    imports {
+        mavenBom 'io.zonky.test.postgres:embedded-postgres-binaries-bom:13.8.0'
+    }
+}
+
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
@@ -58,6 +64,8 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation "org.springframework.cloud:spring-cloud-starter-contract-verifier:${springCloudContractVersion}"
     testImplementation "org.springframework.cloud:spring-cloud-starter-contract-stub-runner:${springCloudContractVersion}"
+    testImplementation "io.zonky.test:embedded-database-spring-test:${zonkyVersion}"
+    testImplementation "io.zonky.test:embedded-postgres:${zonkyVersion}"
 }
 
 test {
