@@ -31,5 +31,5 @@ jobs:
       - name: Test coverage badge
         uses: pooi/coverage-badge@1.0.0
         with:
-          token: ${{ secret.GITHUB_ACCESS_TOKEN }}
+          token: ${{ secret.ACTIONS_SECRET }}
           xml-test-report-path: ${SOURCE_PATH}/build/reports/jacoco/test/jacocoTestReport.xml
