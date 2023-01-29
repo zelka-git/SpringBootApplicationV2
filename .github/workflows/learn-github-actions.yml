@@ -33,3 +33,4 @@ jobs:
         with:
           token: ${{ secrets.ACTIONS_SECRET }}
           xml-test-report-path: ${SOURCE_PATH}/build/reports/jacoco/test/jacocoTestReport.xml
+          github-page-ref: develop
