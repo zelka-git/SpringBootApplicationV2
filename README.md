@@ -1,5 +1,7 @@
 [![Java CI](https://github.com/zelka-git/SpringBootApplicationV2/actions/workflows/learn-github-actions.yml/badge.svg)](https://github.com/zelka-git/SpringBootApplicationV2/actions/workflows/learn-github-actions.yml)
 
+[![coverage](https://github.com/zelka-git/SpringBootApplicationV2/coverage.svg)](https://github.com/zelka-git/SpringBootApplicationV2/coverage)
+
 # SpringBootApplicationV2
 
 SpringBoot,
