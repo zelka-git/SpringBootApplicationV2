@@ -7,3 +7,8 @@ testcontainers,
 contract test
 
 liquibase - hibernate plugin to generate changelog
+
+### Test with embedded postgresql:
+*(src/test/java/com/example/demo/repository/ItemRepositoryTest.java)*
+
+used zonky Embedded Database : https://github.com/zonkyio/embedded-database-spring-test

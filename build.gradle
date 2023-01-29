@@ -51,7 +51,7 @@ dependencies {
     annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVerson}"
 
     liquibaseRuntime 'org.postgresql:postgresql'
-    liquibaseRuntime "org.liquibase:liquibase-core:${liquibaseCoreVersion}"
+    liquibaseRuntime 'org.liquibase:liquibase-core'
     liquibaseRuntime 'org.springframework:spring-orm'
     liquibaseRuntime 'org.springframework.boot:spring-boot'
     liquibaseRuntime 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -59,6 +59,9 @@ dependencies {
     liquibaseRuntime "org.liquibase.ext:liquibase-hibernate5:${liquibaseHibernateVersion}"
 
     liquibaseRuntime sourceSets.main.output
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 
     testImplementation "org.testcontainers:postgresql:${testcontainersPostgresVersion}"
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -74,20 +77,22 @@ test {
 }
 
 jacocoTestReport {
+    executionData(test, contractTest)
     reports {
         xml.required = true
         csv.required = false
         html.required = true
     }
 
-    dependsOn test // tests are required to run before generating the report
+    dependsOn test  // tests are required to run before generating the report
+    dependsOn contractTest
 }
 
 jacocoTestCoverageVerification {
     violationRules {
         rule {
             limit {
-//                minimum = 0.5
+                minimum = 0.1
             }
         }
     }
