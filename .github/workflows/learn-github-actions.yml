@@ -32,6 +32,6 @@ jobs:
         uses: pooi/coverage-badge@1.0.0
         with:
           token: ${{ secrets.ACTIONS_SECRET }}
-          xml-test-report-path: ${SOURCE_PATH}/build/reports/jacoco/test/jacocoTestReport.xml
+          xml-test-report-path: ./build/reports/jacoco/test/jacocoTestReport.xml
           github-page-ref: develop
           github-page-path: develop
