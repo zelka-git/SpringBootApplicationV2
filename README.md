@@ -2,6 +2,10 @@
 
 [![Coverage](.github/badges/jacoco.svg)](https://github.com/zelka-git/SpringBootApplicationV2/actions/workflows/learn-github-actions.yml)
 
+
+
+[![Coverage](https://github.com/zelka-git/SpringBootApplicationV2/.github/badges/jacoco.svg)](https://github.com/zelka-git/SpringBootApplicationV2/actions/workflows/jacoco.yml)
+
 # SpringBootApplicationV2
 
 SpringBoot,
