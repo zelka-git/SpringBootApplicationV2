@@ -80,7 +80,7 @@ jacocoTestReport {
     executionData(test, contractTest)
     reports {
         xml.required = true
-        csv.required = false
+        csv.required = true
         html.required = true
     }
 

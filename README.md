@@ -2,6 +2,8 @@
 
 [![coverage](https://github.com/zelka-git/SpringBootApplicationV2/coverage.svg)](https://github.com/zelka-git/SpringBootApplicationV2/coverage)
 
+![Coverage](.github/badges/jacoco.svg)
+
 # SpringBootApplicationV2
 
 SpringBoot,
