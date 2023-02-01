@@ -28,11 +28,24 @@ jobs:
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
           arguments: build
-      - name: Test coverage badge
-        uses: pooi/coverage-badge@1.0.0
+#      - name: Test coverage badge
+#        uses: pooi/coverage-badge@1.0.0
+#        with:
+#          token: ${{ secrets.ACTIONS_SECRET }}
+#          xml-test-report-path: ./build/reports/jacoco/test/jacocoTestReport.xml
+#          html-test-report-path: ./build/reports/jacoco/test/html
+#          github-page-ref: develop
+#          github-page-path: develop
+
+      - name: Code Coverage Summary
+        uses: irongut/CodeCoverageSummary@v1.3.0
         with:
-          token: ${{ secrets.ACTIONS_SECRET }}
-          xml-test-report-path: ./build/reports/jacoco/test/jacocoTestReport.xml
-          html-test-report-path: ./build/reports/jacoco/test/html
-          github-page-ref: develop
-          github-page-path: develop
+          filename: ./build/reports/jacoco/test/jacocoTestReport.xml
+          badge: true
+          fail_below_min: true
+          format: markdown
+          hide_branch_rate: false
+          hide_complexity: true
+          indicators: true
+          output: both
+          thresholds: '60 80'
