@@ -1,8 +1,6 @@
 [![Java CI](https://github.com/zelka-git/SpringBootApplicationV2/actions/workflows/learn-github-actions.yml/badge.svg)](https://github.com/zelka-git/SpringBootApplicationV2/actions/workflows/learn-github-actions.yml)
 
-[![coverage](https://github.com/zelka-git/SpringBootApplicationV2/coverage.svg)](https://github.com/zelka-git/SpringBootApplicationV2/coverage)
-
-![Coverage](.github/badges/jacoco.svg)
+[![Coverage](.github/badges/jacoco.svg)](https://github.com/zelka-git/SpringBootApplicationV2/actions/workflows/learn-github-actions.yml)
 
 # SpringBootApplicationV2
 
