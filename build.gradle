@@ -42,6 +42,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'org.liquibase:liquibase-core'
     implementation "org.mapstruct:mapstruct:${mapstructVerson}"
 
@@ -63,6 +64,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 
+    testImplementation "org.testcontainers:testcontainers:${testcontainersPostgresVersion}"
     testImplementation "org.testcontainers:postgresql:${testcontainersPostgresVersion}"
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation "org.springframework.cloud:spring-cloud-starter-contract-verifier:${springCloudContractVersion}"

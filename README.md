@@ -17,3 +17,7 @@ liquibase - hibernate plugin to generate changelog
 *(src/test/java/com/example/demo/repository/ItemRepositoryTest.java)*
 
 used zonky Embedded Database : https://github.com/zonkyio/embedded-database-spring-test
+
+
+
+./gradlew build -x contractTest -x test
