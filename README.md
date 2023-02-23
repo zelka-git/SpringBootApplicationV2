@@ -21,3 +21,5 @@ used zonky Embedded Database : https://github.com/zonkyio/embedded-database-spri
 
 
 ./gradlew build -x contractTest -x test
+
+Test with testContainer + redis + cluster (RedisClusterTestContainerTest) (but it fails on pipeline with exception Cannot determine a partition for slot 6518)
