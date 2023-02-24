@@ -4,6 +4,8 @@ import io.lettuce.core.ClientOptions;
 import io.lettuce.core.RedisURI;
 import io.lettuce.core.SocketOptions;
 import io.lettuce.core.TimeoutOptions;
+import io.lettuce.core.cluster.ClusterClientOptions;
+import io.lettuce.core.cluster.ClusterTopologyRefreshOptions;
 import io.lettuce.core.resource.ClientResources;
 import io.lettuce.core.resource.SocketAddressResolver;
 import java.net.SocketAddress;
@@ -97,11 +99,17 @@ class RedisClusterTestContainerTest {
             genericObjectPoolConfig.setMaxTotal(100);
             genericObjectPoolConfig.setMinIdle(10);
 
+            ClusterTopologyRefreshOptions topologyRefreshOptions = ClusterTopologyRefreshOptions.builder()
+                .enablePeriodicRefresh(Duration.ofMinutes(10))
+                .enableAllAdaptiveRefreshTriggers()
+                .build();
+
             var clientConfiguration = LettucePoolingClientConfiguration.builder()
                 .clientResources(lettuceClientResources)
-                .clientOptions(ClientOptions.builder()
-                    .disconnectedBehavior(ClientOptions.DisconnectedBehavior.REJECT_COMMANDS)
-                    .autoReconnect(true)
+                .clientOptions(ClusterClientOptions.builder()
+                    .topologyRefreshOptions(topologyRefreshOptions)
+                    .disconnectedBehavior(ClientOptions.DisconnectedBehavior.DEFAULT)
+                    .autoReconnect(false)
                     .socketOptions(SocketOptions.builder()
                         .connectTimeout(Duration.ofMillis(100))
                         .build())
@@ -113,9 +121,9 @@ class RedisClusterTestContainerTest {
                 .poolConfig(genericObjectPoolConfig)
                 .build();
 
-            Map<String, Object> properties =
-                Map.of("spring.redis.cluster.nodes", System.getProperty("spring.redis.cluster.nodes"),
-                    "spring.redis.cluster.max-redirects", 4);
+            Map<String, Object> properties = Map.of(
+                "spring.redis.cluster.nodes", System.getProperty("spring.redis.cluster.nodes"),
+                "spring.redis.cluster.max-redirects", 4);
             var defaultPropertiesPropertySource = new DefaultPropertiesPropertySource(properties);
             var redisClusterConfiguration = new RedisClusterConfiguration(defaultPropertiesPropertySource);
             return new LettuceConnectionFactory(redisClusterConfiguration, clientConfiguration);
